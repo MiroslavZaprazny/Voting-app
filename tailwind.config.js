@@ -23,17 +23,30 @@ module.exports = {
                 'purple' : '#8b60ed',
             },
             spacing:{
+                104: '26rem',
+                22: '5.5rem',
                 70: '17.5rem',
+                76: '19rem',
                 175: '43.75rem',
             },
             maxWidth: {
-                custom: '62.5rem',
+                custom: '68.5rem',
             },
             fontFamily: {
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
             },
+            fontSize: {
+                xxs: ['0.625rem', { lineHeight: '1rem' }],
+            },
+            boxShadow: {
+                card: '4px 4px 15px 0 rgba(36, 37, 38, 0.08)',
+                dialog: '3px 4px 15px 0 rgba(36, 37, 38, 0.22)',
+            },
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/line-clamp')
+    ],
 };
