@@ -22,7 +22,8 @@
         </div>
     </div>
 
-    <div class="ideas-container mt-8">
+    <div class="ideas-container mt-8 space-y-6">
+        @foreach ($ideas as $idea)
         <div class="idea-container bg-white rounded-xl flex transition ease-in duration-150 hover:shadow-md">
             <div class="hidden md:block border-r border-gray-100 px-5 py-8">
                 <div class="text-center">
@@ -51,19 +52,17 @@
                 </div>
                 <div class="w-full flex flex-col justify-between mx-4 mt-2 md:mt-0">
                     <h4 class="text-xl font-semibold">
-                        <a href="#" class="hover:underline">
-                            A title goes here
+                        <a href="{{route('idea.show', $idea)}}" class="hover:underline">
+                            {{$idea->title}}
                         </a>
                     </h4>
                     <div class="text-gray-600 mt-3 line-clamp-3">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, veniam dolor repellat nemo
-                        obcaecati dolorum quaerat itaque! Voluptates delectus unde, veniam maiores voluptatem eos
-                        distinctio pariatur eligendi, nam aspernatur sunt.
+                        {{$idea->description}}
                     </div>
                     <div class="flex flex-col md:flex-row  md:items-center justify-between mt-6">
                         <div class="flex text-gray-400 tems-center text-xs font-semibold space-x-2">
                             <div>
-                                10 hours ago
+                                {{$idea->created_at->diffForHumans()}}
                             </div>
                             <div>
                                 &bull;
@@ -130,5 +129,9 @@
                 </div>
             </div>
         </div>
+        @endforeach
+    </div>
+    <div class="my-5">
+        {{$ideas->links()}}
     </div>
 </x-app-layout>
