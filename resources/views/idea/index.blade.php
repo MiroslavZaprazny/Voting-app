@@ -68,7 +68,7 @@
                                 &bull;
                             </div>
                             <div>
-                                Category
+                               {{$idea->category->name}}
                             </div>
                             <div>
                                 &bull;
