@@ -80,8 +80,8 @@
                         <div class="flex justify-between mr-12 lg:mr-0 mt-6 lg:mt-0 -ml-2">
                             <div x-data="{ isOpen: false }" class="flex-items-center space-x-2 mt-4 md:mt-0">
                                 <button
-                                    class="bg-gray-200 text-xs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
-                                    Open
+                                    class="{{ Str::kebab($idea->status->name) }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
+                                    {{$idea->status->name}}
                                 </button>
                                 <button @click="isOpen = !isOpen"
                                     class="relative bg-gray-100 border transition ease-in duration-150 hover:bg-gray-200 rounded-full h-7 py-2 px-3">

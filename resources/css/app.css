@@ -50,3 +50,23 @@
     background: theme('colors.blue');
     opacity: 1;
 }
+
+.open{
+    @apply bg-gray-200
+}
+
+.closed {
+    @apply bg-red
+}
+
+.considering {
+    @apply bg-purple
+}
+
+.in-progress {
+    @apply bg-yellow
+}
+
+.implemented {
+    @apply bg-green
+}
