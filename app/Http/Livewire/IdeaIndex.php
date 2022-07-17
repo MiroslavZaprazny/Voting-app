@@ -3,40 +3,25 @@
 namespace App\Http\Livewire;
 
 use App\Models\Idea;
+use App\Models\Vote;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class IdeaIndex extends Component
-{
-    public $idea;
-    public $votesCount;
-    public $hasVoted;
-
-    public function mount(Idea $idea)
-    {
-        $this->hasVoted = $idea->voted_by_user;
-    }
-
-    public function vote()
-    {
-        if(!auth()->check()) {
-            return redirect(route('login'));
-        }
-
-        if($this->hasVoted)
-        {
-            $this->idea->removeVote(auth()->user());
-            $this->votesCount--;
-            $this->hasVoted = false;
-        } 
-        else {
-            $this->idea->vote(auth()->user());
-            $this->votesCount++;
-            $this->hasVoted = true;
-        }
-    }
-    
+{ 
+    use WithPagination;
+       
     public function render()
     {
-        return view('livewire.idea-index');
+        return view('livewire.idea-index', [
+            'ideas' => Idea::with('user', 'category', 'status')
+                ->addSelect(['voted_by_user' => Vote::select('id')
+                    ->where('user_id', auth()->id())
+                    ->whereColumn('idea_id', 'ideas.id')
+                ])
+            ->withCount('votes')
+            ->latest('id')
+            ->paginate(10)
+        ]);
     }
 }
