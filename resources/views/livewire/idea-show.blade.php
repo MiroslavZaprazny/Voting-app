@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6 space-y-2 md:space-y-0">
-                    <div class="flex items-center -ml-8 text-xs text-gray-400 font-semibold space-x-2">
+                    <div class="flex items-center ml-0 md:-ml-8 text-xs text-gray-400 font-semibold space-x-2">
                         <div class="hidden md:block font-bold text-gray-900">{{ $idea->user->name }}</div>
                         <div class="hidden md:block">&bull;</div>
                         <div>{{ $idea->created_at->diffForHumans() }}</div>
@@ -169,13 +169,22 @@
         </div>
         <div class="flex items-center space-x-3 ml-4">
             <div class="bg-white font-semibold text-center rounded-xl px-3 py-2">
-                <div class="text-xl leading-snug">{{ $votesCount }}</div>
+                <div class="text-xl leading-snug @if($hasVoted) text-blue @endif">{{ $votesCount }}</div>
                 <div class="text-gray-400 text-xs leading-none">Votes</div>
             </div>
-            <button type="button"
-                class="w-32 h-10 text-xs bg-gray-200 font-semibold uppercase rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
-                <span>Vote</span>
-            </button>
+            @if ($hasVoted)
+                <button wire:click.prevent="vote"
+                 type="button"
+                    class="w-32 h-10 text-xs bg-blue font-semibold uppercase rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
+                    <span class="text-white">Voted</span>
+                </button>
+            @else
+                <button wire:click.prevent="vote"
+                 type="button"
+                    class="w-32 h-10 text-xs bg-gray-200 font-semibold uppercase rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
+                    <span>Vote</span>
+                </button>
+            @endif
         </div>
     </div> <!-- end buttons-container -->
 </div>
