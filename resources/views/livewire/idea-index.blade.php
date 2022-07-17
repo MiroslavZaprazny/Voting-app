@@ -31,6 +31,7 @@
         @endforeach
     </div>
     <div class="my-5">
-        {{ $ideas->links() }}
+        {{-- {{ $ideas->links() }} --}}
+        {{ $ideas->appends(request()->query())->links() }}
     </div>
 </div>
