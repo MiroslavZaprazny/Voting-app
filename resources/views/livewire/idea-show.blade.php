@@ -8,7 +8,7 @@
             </div>
             <div class="w-full mx-4 mt-2 md:mt-0">
                 <h4 class="text-xl font-semibold">
-                    <a href="#" class="hover:underline">{{ $idea->title }}</a>
+                    {{ $idea->title }}
                 </h4>
                 <div class="text-gray-600 mt-3">
                     {{ $idea->description }}
