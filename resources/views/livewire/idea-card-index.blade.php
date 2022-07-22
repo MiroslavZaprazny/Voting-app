@@ -65,30 +65,6 @@
                             class="{{ Str::kebab($idea->status->name) }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
                             {{ $idea->status->name }}
                         </button>
-                        <button @click="isOpen = !isOpen"
-                            class="relative bg-gray-100 border transition ease-in duration-150 hover:bg-gray-200 rounded-full h-7 py-2 px-3 mt-3">
-                            <svg fill="currentColor" width="24" height="6">
-                                <path
-                                    d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z"
-                                    style="color: rgba(163, 163, 163, .5)">
-                            </svg>
-                            <ul x-cloak x-show="isOpen" x-transition.origin.top.left.duration.200ms
-                                @click.away="isOpen = false"
-                                class="absolute ml-8 first-letter:text-left font-semibold bg-white w-44 shadow-lg rounded-xl py-3">
-                                <li>
-                                    <a href="#"
-                                        class="hover:bg-gray-100 block px-5 py-3 transition ease-in duration-150">
-                                        Mark as spam
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="hover:bg-gray-100 block px-5 py-3 transition ease-in duration-150">
-                                        Delete post
-                                    </a>
-                                </li>
-                            </ul>
-                        </button>
                     </div>
                     <div class="flex items-center md:hidden mt-4 md:mt-0 space-x-4 md:space-x-0">
                         <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2">
