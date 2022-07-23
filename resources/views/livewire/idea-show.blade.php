@@ -11,6 +11,13 @@
                     {{ $idea->title }}
                 </h4>
                 <div class="text-gray-600 mt-3">
+                    @admin()
+                        @if ($idea->spam_reports > 0)
+                            <div class="text-red mb-2">
+                                Spam reports: {{ $idea->spam_reports }}
+                            </div>
+                        @endif
+                    @endadmin
                     {{ $idea->description }}
                 </div>
 
@@ -53,7 +60,10 @@
                                     </li>
                                 @endcan
                                 <li>
-                                    <a href="#"
+                                    <a @click="
+                                        isOpen=false
+                                        $dispatch('custom-show-spam-modal')"
+                                        href="#"
                                         class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark
                                         as Spam</a>
                                 </li>
@@ -68,6 +78,19 @@
                                             Idea</a>
                                     </li>
                                 @endcan
+                                @admin('delete', $idea)
+                                    @if ($idea->spam_reports > 0)
+                                        <li>
+                                            <a @click="
+                                isOpen=false
+                                $dispatch('custom-show-spam-not-modal')
+                            "
+                                                href="#"
+                                                class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Not
+                                                spam</a>
+                                        </li>
+                                    @endif
+                                @endadmin
                             </ul>
                         </div>
                     </div>

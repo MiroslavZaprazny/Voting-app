@@ -11,13 +11,24 @@ class IdeaShow extends Component
     public $votesCount;
     public $hasVoted;
 
-    protected $listeners = ['statusWasUpdated', 'ideaWasUpdated'];
+    protected $listeners = ['statusWasUpdated', 'ideaWasUpdated', 'ideaWasMarkedAsSpam', 'ideaWasMarkedAsNotSpam'];
 
-    public function mount(Idea $idea) {
+    public function mount(Idea $idea)
+    {
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
-     
+
     public function statusWasUpdated()
+    {
+        $this->idea->refresh();
+    }
+
+    public function ideaWasMarkedAsSpam()
+    {
+        $this->idea->refresh();
+    }
+    
+    public function ideaWasMarkedAsNotSpam()
     {
         $this->idea->refresh();
     }
@@ -29,17 +40,15 @@ class IdeaShow extends Component
 
     public function vote()
     {
-        if(!auth()->check()) {
+        if (!auth()->check()) {
             return redirect(route('login'));
         }
 
-        if($this->hasVoted)
-        {
+        if ($this->hasVoted) {
             $this->idea->removeVote(auth()->user());
             $this->votesCount--;
             $this->hasVoted = false;
-        } 
-        else {
+        } else {
             $this->idea->vote(auth()->user());
             $this->votesCount++;
             $this->hasVoted = true;
