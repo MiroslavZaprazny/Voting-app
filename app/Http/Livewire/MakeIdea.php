@@ -38,6 +38,8 @@ class MakeIdea extends Component
 
         $this->reset();
 
+        $this->emit('ideaWasCreated');
+        
         return redirect()->back();
     }
 

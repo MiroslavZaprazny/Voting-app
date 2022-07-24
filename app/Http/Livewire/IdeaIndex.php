@@ -25,7 +25,7 @@ class IdeaIndex extends Component
         'search'
     ];
 
-    protected $listeners = ['queryStringUpdatedStatus'];
+    protected $listeners = ['queryStringUpdatedStatus', 'ideaWasCreated'];
 
     public function mount()
     {
@@ -59,6 +59,10 @@ class IdeaIndex extends Component
     public function queryStringUpdatedStatus($status)
     {
         $this->status = $status;
+        $this->resetPage();
+    }
+
+    public function ideaWasCreated() {
         $this->resetPage();
     }
        

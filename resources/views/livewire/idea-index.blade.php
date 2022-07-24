@@ -43,7 +43,7 @@
             </div>
         @endforelse
     </div>
-    <div class="my-5">
+    <div class="my-10">
         {{-- {{ $ideas->links() }} --}}
         {{ $ideas->appends(request()->query())->links() }}
     </div>
