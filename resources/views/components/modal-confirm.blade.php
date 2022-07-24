@@ -17,12 +17,12 @@
     window.livewire.on('{{$eventToCloseModal}}', () => {
         isOpen = false
     })"
-    class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    class="relative z-20" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div 
         x-show="isOpen"
         x-transition.opacity
         class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-    <div class="fixed z-10 inset-0 overflow-y-auto">
+    <div class="fixed z-20 inset-0 overflow-y-auto">
         <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
             <div         
                 x-show="isOpen"
