@@ -97,6 +97,7 @@ class IdeaIndex extends Component
                     ->whereColumn('idea_id', 'ideas.id')
                 ])
             ->withCount('votes')
+            ->withCount('comments')
             ->latest('id')
             ->paginate(10),
 

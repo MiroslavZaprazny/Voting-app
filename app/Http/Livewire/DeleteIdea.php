@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\Vote;
 use Livewire\Component;
@@ -18,6 +19,7 @@ class DeleteIdea extends Component
             abort(403);
         }
 
+        Comment::where('idea_id', $this->idea->id)->delete();
         Vote::where('idea_id', $this->idea->id)->delete();
         Idea::destroy($this->idea->id);
 

@@ -63,7 +63,11 @@
                         &bull;
                     </div>
                     <div class="text-gray-900">
-                        4 Comments
+                        @if (!$idea->comments_count == 0)
+                            {{ $idea->comments_count }} Comments
+                        @else
+                            No Comments
+                        @endif
                     </div>
                 </div>
                 <div class="flex justify-between mr-12 lg:mr-0 mt-6 lg:mt-0 -ml-2">
