@@ -25,8 +25,12 @@
     width: 23px;
     height: 3px;
     background: #edf0f5;
-    left: -38px;
+    left: -40px;
 }
+
+.is-status-update.comment-container:last-child::after {
+    left: -41px;
+  }
 
 .comment-container:last-child::after {
     position: absolute;

@@ -62,7 +62,8 @@
                     <div>
                         &bull;
                     </div>
-                    <div class="text-gray-900">
+                    <div wire:ignore
+                     class="text-gray-900">
                         @if (!$idea->comments_count == 0)
                             {{ $idea->comments_count }} Comments
                         @else

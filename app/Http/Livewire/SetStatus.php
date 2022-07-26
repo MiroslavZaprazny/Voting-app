@@ -2,16 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\IdeaStatusWasUpdatedMailable;
 use App\Models\Status;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Comment;
 use Livewire\Component;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\IdeaStatusWasUpdatedMailable;
 
 class SetStatus extends Component
 {
     public $idea;
     public $status;
     public $notifyAllVoters;
+    public $comment;
 
     public function mount()
     {
@@ -30,6 +32,16 @@ class SetStatus extends Component
         if ($this->notifyAllVoters) {
             $this->notifyAllVoters();
         }
+
+        Comment::create([
+            'user_id' => auth()->id(),
+            'idea_id' => $this->idea->id,
+            'status_id' => $this->status,
+            'body' => $this->comment ?? 'No comment was added.',
+            'is_status_update' => true
+        ]);
+
+        $this->reset();
 
         $this->emit('statusWasUpdated');
     }

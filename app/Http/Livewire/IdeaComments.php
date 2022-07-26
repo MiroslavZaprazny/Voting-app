@@ -11,7 +11,7 @@ class IdeaComments extends Component
     
     public $idea;
 
-    protected $listeners = ['commentWasAdded', 'commentWasDeleted'];
+    protected $listeners = ['commentWasAdded', 'commentWasDeleted', 'statusWasUpdated'];
 
     public function commentWasAdded()
     {
@@ -22,11 +22,16 @@ class IdeaComments extends Component
     {
         $this->idea->refresh();
     }
+
+    public function statusWasUpdated()
+    {
+        $this->idea->refresh();
+    }
     
     public function render()
     {
         return view('livewire.idea-comments',[
-            'comments' => $this->idea->comments()->with(['user'])->paginate(8)
+            'comments' => $this->idea->comments()->with(['user', 'status'])->paginate(8)
         ]);
     }
 }
