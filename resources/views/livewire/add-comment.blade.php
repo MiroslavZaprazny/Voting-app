@@ -3,6 +3,10 @@ window.livewire.on('commentWasAdded', () => {
     isOpen = false
 })
     Livewire.hook('message.processed', (message, component) =>{
+        if (message.updateQueue[0].method === 'gotoPage' || message.updateQueue[0].method === 'nextPage' || message.updateQueue[0].method === 'previousPage') {
+            const firstComment = document.querySelector('.comment-container:first-child')
+                firstComment.scrollIntoView({ behavior: 'smooth'})
+        }
         if(message.updateQueue[0].payload.event == 'commentWasAdded' && message.component.fingerprint.name == 'idea-comments')
         {
             const lastComment = document.querySelector('.comment-container:first-child')
@@ -10,7 +14,7 @@ window.livewire.on('commentWasAdded', () => {
             lastComment.classList.add('bg-gray-200')
             setTimeout(() => {
                 lastComment.classList.remove('bg-gray-200')
-            }, 2000)
+            }, 4000)
         }
     })
 "

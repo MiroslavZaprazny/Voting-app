@@ -8,6 +8,9 @@
                 :ideaUserId="$idea->user->id" />
             @endforeach
         </div> <!-- end comments-container -->
+        <div class="my-8 md:ml-22">
+            {{ $comments->links() }}
+        </div>
     @else
         <div class="text-gray-400 text-center font-bold mt-10">
             No comments yet...

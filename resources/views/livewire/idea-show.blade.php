@@ -30,8 +30,8 @@
                         <div>{{ $idea->category->name }}</div>
                         <div>&bull;</div>
                         <div class="text-gray-900">
-                            @if (!$idea->comments->count() == 0)
-                                {{ $idea->comments->count() }} Comments
+                            @if (!$idea->comments()->count() == 0)
+                                {{ $idea->comments()->count() }} Comments
                             @else
                                 No Comments
                             @endif
