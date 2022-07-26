@@ -1,5 +1,6 @@
 @props([
-    'eventToOpenModal',
+    'eventToOpenModal' => null,
+    'livewireEventToOpenModal' => null,
     'eventToCloseModal',
     'modalTitle',
     'modalDescription',
@@ -12,11 +13,19 @@
     x-data ="{ isOpen:false }"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
-    {{ '@' .$eventToOpenModal }}.window="isOpen = true"
+    @if ($eventToOpenModal)
+        {{'@' .$eventToOpenModal }}.window="isOpen = true" 
+    @endif
     x-init="
     Livewire.on('{{$eventToCloseModal}}', () => {
         isOpen = false
-    })"
+    })
+        @if ($livewireEventToOpenModal)
+        Livewire.on('{{$livewireEventToOpenModal}}', () => {
+            isOpen = true
+        })
+        @endif
+    "
     class="relative z-20" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div 
         x-show="isOpen"
