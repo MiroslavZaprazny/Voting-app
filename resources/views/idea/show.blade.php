@@ -9,11 +9,18 @@
     </div>
 
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount" />
+
     <x-notification-success/>
+
     <livewire:edit-idea :idea="$idea" />
+
     <livewire:delete-idea :idea="$idea" />
+
     <livewire:mark-idea-as-spam :idea="$idea" />
+
     <livewire:mark-idea-as-not-spam :idea="$idea" />
- 
+
     <livewire:idea-comments :idea="$idea" />
+
+    <livewire:edit-comment />
 </x-app-layout>
