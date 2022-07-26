@@ -25,4 +25,8 @@
     <livewire:edit-comment />
 
     <livewire:delete-comment />
+
+    <livewire:mark-comment-as-spam />
+
+    <livewire:mark-comment-as-not-spam />
 </x-app-layout>
