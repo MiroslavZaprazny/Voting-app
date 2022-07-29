@@ -75,7 +75,7 @@ x-data="{ isOpen: false }" class="relative">
                     Please login or create an account to post a comment.
                 </p>
                 <div class="flex items-center space-x-3 mt-8">
-                    <a 
+                    <a wire:click.prevent="redirectToLogin"
                         href="{{ route('login') }}"\
                         class="flex items-center justify-center w-1/2 h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
                         >

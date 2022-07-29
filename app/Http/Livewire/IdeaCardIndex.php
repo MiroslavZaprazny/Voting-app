@@ -18,8 +18,8 @@ class IdeaCardIndex extends Component
 
     public function vote()
     {
-        if(!auth()->check()) {
-            return redirect(route('login'));
+        if(auth()->guest()) {
+            return $this->redirectToLogin();
         }
 
         if($this->hasVoted)

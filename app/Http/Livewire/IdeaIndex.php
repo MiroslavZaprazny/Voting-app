@@ -8,10 +8,11 @@ use App\Models\Status;
 use App\Models\Vote;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Http\Livewire\Traits\WithAuthRedirects;
 
 class IdeaIndex extends Component
 { 
-    use WithPagination;
+    use WithPagination, WithAuthRedirects;
 
     public $status;
     public $category;
@@ -50,8 +51,8 @@ class IdeaIndex extends Component
     public function updatedFilter()
     {
         if($this->filter === 'My Ideas'){
-            if(! auth()->check()){
-                return redirect()->route('login');
+            if(auth()->guest()){
+                return $this->redirectToLogin();
             }
         }
     }
