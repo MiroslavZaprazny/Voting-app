@@ -17,6 +17,14 @@ window.livewire.on('commentWasAdded', () => {
             }, 4000)
         }
     })
+    @if (session('scrollToComment'))
+            const commentToScrollTo = document.querySelector('#comment-{{ session('scrollToComment') }}')
+            commentToScrollTo.scrollIntoView({ behavior: 'smooth'})
+            commentToScrollTo.classList.add('bg-gray-200')
+            setTimeout(() => {
+                commentToScrollTo.classList.remove('bg-gray-200')
+            }, 5000)
+        @endif
 "
 x-data="{ isOpen: false }" class="relative">
     <button @click="
